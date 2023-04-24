@@ -1,9 +1,11 @@
 import React from 'react';
 import { StyleSheet, TextInput, View } from 'react-native'
 import colors from '../utils/colors';
-import RNPickerSelect from 'react-native-picker-select';
+
+import { Picker } from '@react-native-picker/picker';
 
 export default function Form(props) {
+    const valorInicial = 'Seleccionar meses'
     const {setCapital, setInteres, setMonths} = props
     return (
         <View style={styles.viewForm}>
@@ -27,7 +29,20 @@ export default function Form(props) {
 
                  </TextInput>
             </View>
-            <RNPickerSelect
+           
+           <Picker 
+           selectedValue={valorInicial}
+           style={ pickerSelectStyles.inputAndroid} 
+           onValueChange={(value) => setMonths(value)}
+           >
+            <Picker.Item label='Selecciona los plazos' value={null} />
+            <Picker.Item label='3 meses' value={3} />
+            <Picker.Item label='6 meses' value={6} />
+            <Picker.Item label='12 meses' value={12} />
+            <Picker.Item label='24 meses' value={24} />
+           </Picker>
+           
+           {/* <RNPickerSelect
             style={ pickerSelectStyles.inputAndroid}
             onValueChange={(value) => setMonths(value)}
             placeholder={{label: 'Selecciona los plazos',
@@ -39,7 +54,7 @@ export default function Form(props) {
                 { label: '24 meses', value: 24},
             ]}
         />
-
+        */}
         </View>
     )
 }
